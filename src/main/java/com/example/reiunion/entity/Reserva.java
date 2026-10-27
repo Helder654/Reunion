@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -29,12 +30,12 @@ public class Reserva {
     private Long id;
 
     @ManyToOne 
-    @Column(length = 100, nullable = false)
-    private String funcionario;
+    @JoinColumn(name = "funcionario_id", nullable = false)
+    private Funcionario funcionario;
 
     @ManyToOne 
-    @Column(length = 10, nullable = false)
-    private String sala;
+    @JoinColumn(name = "sala_id", nullable = false)
+    private Sala sala;
 
     @Column(nullable = false)
     private LocalDateTime inicio;
