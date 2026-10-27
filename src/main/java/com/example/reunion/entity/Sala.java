@@ -1,14 +1,10 @@
-package com.example.reiunion.entity;
-
-import java.time.LocalDateTime;
+package com.example.reunion.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,26 +16,19 @@ import lombok.Setter;
 @Entity
 @AllArgsConstructor 
 @NoArgsConstructor 
-@Table(name = "reserva")
+@Table(name = "sala")
 @Getter 
 @Setter 
-public class Reserva {
+public class Sala {
 
-    @Id
+    @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne 
-    @JoinColumn(name = "funcionario_id", nullable = false)
-    private Funcionario funcionario;
-
-    @ManyToOne 
-    @JoinColumn(name = "sala_id", nullable = false)
-    private Sala sala;
+    @Column(length = 100, nullable = false)
+    private String name;
 
     @Column(nullable = false)
-    private LocalDateTime inicio;
+    private int capacidade;
 
-    @Column(nullable = false)
-    private LocalDateTime fim;
 }

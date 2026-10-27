@@ -1,13 +1,13 @@
-package com.example.reiunion;
+package com.example.reunion;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ReiunionApplication {
+public class ReunionApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ReiunionApplication.class, args);
+		SpringApplication.run(ReunionApplication.class, args);
 	}
 
 }

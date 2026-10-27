@@ -1,4 +1,4 @@
-package com.example.reiunion.entity;
+package com.example.reunion.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
