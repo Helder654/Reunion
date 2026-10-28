@@ -6,7 +6,8 @@ CREATE TABLE funcionario (
 
 CREATE TABLE sala (
     id BIGSERIAL PRIMARY KEY,
-    name varchar(100) NOT NULL
+    name VARCHAR(100) NOT NULL,
+    capacidade INTEGER NOT NULL
 );
 
 CREATE TABLE reserva (
