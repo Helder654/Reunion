@@ -1,4 +1,4 @@
-package com.example.reunion.repositories;
+package com.example.reunion.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
