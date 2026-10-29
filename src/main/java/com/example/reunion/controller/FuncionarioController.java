@@ -7,10 +7,10 @@ import com.example.reunion.mapper.FuncionarioMapper;
 import com.example.reunion.service.FuncionarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/reunion/funcionario")
@@ -27,5 +27,32 @@ public class FuncionarioController {
         Funcionario newfuncionario = FuncionarioMapper.toFuncionario(funcionariorequest);
         Funcionario savedFuncionario = funcionarioService.saveFuncionario(newfuncionario);
     return ResponseEntity.status(HttpStatus.CREATED).body(FuncionarioMapper.toFuncionarioResponse(savedFuncionario));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<FuncionarioResponse>> getAllFuncionario(){
+        List<Funcionario> funcionarios = funcionarioService.findAll();
+        List<FuncionarioResponse> list = funcionarios.stream()
+                .map(funcionario -> FuncionarioMapper.toFuncionarioResponse(funcionario))
+                .toList();
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<FuncionarioResponse> getFuncionarioById(@PathVariable Long id){
+        return funcionarioService.findById(id)
+                .map(funcionario -> ResponseEntity.ok(FuncionarioMapper.toFuncionarioResponse(funcionario)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+        Optional<Funcionario> optById = funcionarioService.findById(id);
+        if(optById.isPresent()){
+            funcionarioService.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } else{
+            return ResponseEntity.notFound().build();
+        }
     }
 }
