@@ -18,12 +18,12 @@ public class SalaMapper {
         
     }
 
-    public static SalaResponse toSalaResponse(Sala sala){
+    public static SalaResponse toSalaResponse(Sala savedSala){
         return SalaResponse
                 .builder()
-                .id(sala.getId())
-                .name(sala.getName())
-                .capacidade(sala.getCapacidade())
+                .id(savedSala.getId())
+                .name(savedSala.getName())
+                .capacidade(savedSala.getCapacidade())
                 .build();
     }
 
